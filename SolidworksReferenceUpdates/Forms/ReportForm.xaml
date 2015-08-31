@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ReportForm" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SolidworksReferenceUpdate" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" 
+             MinWidth="300" MinHeight="200"
+             Name="ReportFrom" Foreground="#FF11D811">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Label Content="Following results :"/>
+        <Button x:Name="Btn_Export" Content="Export" Width="58" HorizontalAlignment="Right" VerticalAlignment="Top"  Visibility="{Binding ExportButtonVisable,ElementName=ReportFrom,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <ScrollViewer Grid.Row="1" Margin="0,25,0,0" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+            <DockPanel>
+                <DockPanel.Resources>
+                    <DataTemplate x:Key="ErrorMessageBoxTemplate">
+                        <!--<local:ErrorMessageBox Results="{Binding FileResults,ElementName=ReportFrom}"/>-->
+                    </DataTemplate>
+                    <Style TargetType="{x:Type ListBox}">
+                        <Setter Property="Background"  Value="{x:Null}"/>
+                        <Setter Property="ItemTemplate" Value="{StaticResource ErrorMessageBoxTemplate}" />
+                    </Style>
+                </DockPanel.Resources>
+                <Expander x:Name="EXP_Errors"  DockPanel.Dock="Top">
+                    <Expander.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Errors  -"/>
+                            <Label Content="{Binding Errors.Count, ElementName=ReportFrom}"/>
+                        </StackPanel>
+                    </Expander.Header>
+                    <TreeView x:Name="DisTree" Background="{x:Null}" BorderThickness="0">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate DataType="{x:Type local:FileResults}"  >
+                                <local:ErrorMessageBox  Results="{Binding Errors}" />
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+
+                    <!--<StackPanel x:Name="SP_Errors" Margin="4,0,11,0">
+                        <local:ErrorMessageBox />
+                    </StackPanel>-->
+                </Expander>
+                <Expander x:Name="EXP_Warnings" Header="Warnings [0]" DockPanel.Dock="Top">
+                    <ListBox ItemsSource="{Binding Warnings,ElementName=ReportFrom}"/>
+                    <!--<StackPanel x:Name="SP_Warnings" Margin="4,0,11,0">
+                        <local:ErrorMessageBox />
+                        <local:ErrorMessageBox />
+                    </StackPanel>-->
+                </Expander>
+                <Expander x:Name="EXP_Ok" Header="Ok Files [0]" DockPanel.Dock="Top">
+                    <ListBox ItemsSource="{Binding Ok,ElementName=ReportFrom}" ItemTemplate="{StaticResource ErrorMessageBoxTemplate}"/>
+                    <!--<StackPanel x:Name="SP_OK" Margin="4,0,11,0">
+                        <local:ErrorMessageBox />
+                    </StackPanel>-->
+                </Expander>
+            </DockPanel>
+        </ScrollViewer>
+        <!--<Button Name="Btn_Close" Content ="Close" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Button>-->
+    </Grid>
+</UserControl>

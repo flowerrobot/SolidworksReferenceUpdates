@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="ErrorText"
+             x:Name="ErrorForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Background="#FFEE3B3B" >
+    <Grid>
+        <Label x:Name="Header" Content="{Binding HeaderText,ElementName=ErrorForm}" Margin="1,0,0,0" VerticalAlignment="Top" />
+        <TextBlock x:Name="BodyContent" Margin="10,23,0,0" TextWrapping="Wrap" Text="{Binding ContentText,ElementName=ErrorForm}"/>
+    </Grid>
+</UserControl>

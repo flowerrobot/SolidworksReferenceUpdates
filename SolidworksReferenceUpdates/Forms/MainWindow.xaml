@@ -1,0 +1,34 @@
+﻿<Controls:MetroWindow x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SolidworksReferenceUpdate" 
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d" Title="UpdateReferences" Height="350" Width="700">
+    <DockPanel Margin="5">
+        <Label DockPanel.Dock="Top" Content="Select top file:" />
+        <DockPanel DockPanel.Dock="Top">
+            <Button DockPanel.Dock="Right" x:Name="Btn_Broswe" Content="Browse" Click="Btn_Broswe_Click" Margin="5,0,0,0"  Width="80"/>
+            <TextBox DockPanel.Dock="Left" x:Name="TB_TopFile" Text="{Binding TopAssemblyPath}" />
+        </DockPanel >
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Margin="0,5,0,0">
+            <Label DockPanel.Dock="Left" Content="Configuration :"/>
+            <ComboBox DockPanel.Dock="Left" SelectedItem="{Binding SelectedConfiguration}" ItemsSource="{Binding AllConfigurations}" Width="100"/>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+            <Label DockPanel.Dock="Left" Content="Created by Seth Ruhan"/>
+            <Label Content="Version:" DockPanel.Dock="Left" Margin="10,0,0,0"/>
+            <Label x:Name="Version" Content="{Binding ProgramVersion}" DockPanel.Dock="Left"/>            
+            <Button x:Name="Btn_Ok" DockPanel.Dock="Right" Width="80" Content="Update" Margin="5,0,0,0" Click="Btn_Ok_Click" />
+            <Button x:Name="Btn_CheckReferences" DockPanel.Dock="Right" Width="80" Content="Check Refs" Margin="5,0,0,0" Click="Btn_CheckReferences_Click" />
+            <Button x:Name="Btn_Cancel" DockPanel.Dock="Right" Width="80" Content="Cancel" Click="Btn_Cancel_Click" />
+        </DockPanel>
+        <Border DockPanel.Dock="Top" Margin="0,5,0,5"  BorderThickness="1" BorderBrush="#FF999090">
+            <DockPanel Margin="1">
+                <Label DockPanel.Dock="Top" Content="Find and replace rules :" />
+                <DataGrid x:Name="DG_Replaces"  DataContext="{Binding ReplaceRules}" ColumnWidth="*" CanUserAddRows="True" />
+            </DockPanel>
+        </Border>
+    </DockPanel>
+</Controls:MetroWindow>

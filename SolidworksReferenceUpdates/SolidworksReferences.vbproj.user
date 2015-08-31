@@ -9,5 +9,9 @@
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ShowAllFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>C:\Google Drive\Programming\_.Net\01 Libary\</ReferencePath>
   </PropertyGroup>
 </Project>

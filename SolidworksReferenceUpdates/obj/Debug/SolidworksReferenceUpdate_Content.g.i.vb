@@ -11,5 +11,5 @@
 Option Strict Off
 Option Explicit On
 
-<Assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("flowerrobot.ico")> 
+<Assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/folder_yellow_24.png")> 
 
