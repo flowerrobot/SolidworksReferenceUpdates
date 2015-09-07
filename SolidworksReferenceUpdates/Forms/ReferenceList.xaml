@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:SolidworksReferenceUpdate"
           xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="ReferenceList" Height="300" Width="1000">
+        Title="ReferenceList" Height="300" Width="1000"
+                     d:Background="#FF1C1C1C">
     <DockPanel Margin="5">
         <Label Content="Display type :" DockPanel.Dock="Top" />
         <Border  DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness=".0" Margin="0,0,0,5" >
@@ -16,22 +17,23 @@
             </DockPanel>
         </Border>
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="0,5,0,0">
+            <Button x:Name="Btn_Export" DockPanel.Dock="Left" Content="Export" Width="80" Click="Btn_Export_Click"/>
             <Button x:Name="Btn_Ok" DockPanel.Dock="Right" Width="80" Content="Ok" Margin="5,0,0,0" Click="Btn_Ok_Click" />
             <Button x:Name="Btn_Cancel" DockPanel.Dock="Right" Width="80" Content="Cancel" Click="Btn_Cancel_Click" Visibility="Collapsed"/>
         </DockPanel>
-    
+
         <TreeView x:Name="TV_Tree" DockPanel.Dock="Top"  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <TreeView.ItemContainerStyle>
                 <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
                     <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
-                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
-                        <Setter Property="FontWeight" Value="Normal" />
-                        <!--<Setter Property="Foreground" Value="#FFBABABA" />-->                    
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="FontWeight" Value="Bold" />
-                            </Trigger>
-                        </Style.Triggers>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <!--<Setter Property="Foreground" Value="#FFBABABA" />-->
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </TreeView.ItemContainerStyle>
             <TreeView.ItemTemplate>
@@ -43,6 +45,6 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-     
+
     </DockPanel>
 </Controls:MetroWindow>

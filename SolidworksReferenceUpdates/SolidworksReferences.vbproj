@@ -122,6 +122,7 @@
     <Compile Include="..\..\..\..\..\..\..\..\Google Drive\Programming\_.Net\01 Libary\SwDocumentMgr_Data.vb">
       <Link>SwDocumentMgr_Data.vb</Link>
     </Compile>
+    <Compile Include="CreateCSVFile.vb" />
     <Compile Include="dmDocument.vb" />
     <Compile Include="FileResults.vb" />
     <Compile Include="Forms\ErrorMessageBox.xaml.vb">

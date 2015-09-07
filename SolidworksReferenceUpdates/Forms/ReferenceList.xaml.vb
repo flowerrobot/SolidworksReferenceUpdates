@@ -32,4 +32,18 @@ Public Class ReferenceList
     Private Sub Btn_Cancel_Click(sender As Object, e As RoutedEventArgs)
         Me.Close()
     End Sub
+
+    Private Sub Btn_Export_Click(sender As Object, e As RoutedEventArgs)
+        Dim Save As New Microsoft.Win32.SaveFileDialog
+        Save.Filter = "CSV (*.csv)|*.csv;"
+        If Save.ShowDialog Then
+            Try
+                Dim CSVFIle As New CreateCSVFile(Save.FileName)
+                CSVFIle.CreateFile(dmDocument.AllFiles)
+                MsgBox("Completed")
+            Catch ex As Exception
+                MsgBox("An error occured")
+            End Try
+        End If
+    End Sub
 End Class
