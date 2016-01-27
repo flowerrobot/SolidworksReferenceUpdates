@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SolidworksReferenceUpdate.exe" size="807800">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SolidworksReferenceUpdate.exe" size="808824">
       <assemblyIdentity name="SolidworksReferenceUpdate" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>8Vco+CBjAfxZg4qeGyLbmAVCnRw=</dsig:DigestValue>
+        <dsig:DigestValue>/AkO0bp3TraIMnkFT/YGV4lLeDw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

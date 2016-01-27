@@ -122,6 +122,7 @@
     <Compile Include="..\..\..\..\..\..\..\..\Google Drive\Programming\_.Net\01 Libary\SwDocumentMgr_Data.vb">
       <Link>SwDocumentMgr_Data.vb</Link>
     </Compile>
+    <Compile Include="LevelToMarginConverter.vb" />
     <Compile Include="CreateCSVFile.vb" />
     <Compile Include="dmDocument.vb" />
     <Compile Include="FileResults.vb" />
@@ -139,6 +140,7 @@
     </Compile>
     <Compile Include="ReplaceRules.vb" />
     <Compile Include="Result.vb" />
+    <Compile Include="TreeListView.vb" />
     <Compile Include="UpdateFiles.vb" />
     <Page Include="Forms\ErrorMessageBox.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -243,6 +245,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Folder_Yellow_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />

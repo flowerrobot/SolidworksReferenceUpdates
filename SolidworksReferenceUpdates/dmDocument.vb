@@ -4,8 +4,7 @@ Imports PropertyChanged
 
 <ImplementPropertyChanged>
 Public Class dmDocument
-    Shared ClasFact As ISwDMClassFactory = CreateObject("SwDocumentMgr.SwDMClassFactory.1")
-    Public Shared dmDocMgr As SwDMApplication4 = ClasFact.GetApplication(sLicenseKey)
+    Public Shared dmDocMgr As SwDMApplication4 = GetSwDocMgr()
 
     Public Shared AllFiles As New Dictionary(Of String, dmDocument)
 
@@ -18,6 +17,13 @@ Public Class dmDocument
     Public Property SelectedConfiguration As String
     Public Property IsValid As Boolean = True
     Public Property HasDrawing As String = "N/A"
+
+    Public Property Level As Integer
+    Public ReadOnly Property FileExists As Boolean
+        Get
+            Return IO.File.Exists(FullFileName)
+        End Get
+    End Property
 
 #Region "For Treeview"
     Public Property IsSelected As Boolean

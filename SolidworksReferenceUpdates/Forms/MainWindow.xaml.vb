@@ -8,16 +8,18 @@ Imports MahApps.Metro.Controls
 <ImplementPropertyChanged>
 Class MainWindow
     Inherits MetroWindow
-    Dim Rules As New ObservableCollection(Of ReplaceRules)
-    Dim Results As New ObservableCollection(Of FileResults)
-    Dim _FileName As String
+    Friend Property References As New ObservableCollection(Of dmDocument)
+    ' Dim Rules As New ObservableCollection(Of ReplaceRules)
+    ' Dim Results As New ObservableCollection(Of FileResults)
+    Dim _TopAssemblyPath As String
+    Dim _SelectedConfiguration As String
 
     Sub New()
         InitializeComponent()
         Me.DataContext = Me
-        DG_Replaces.ItemsSource = Rules
-
-
+        'DG_Replaces.ItemsSource = Rules
+        '  DG_References.ItemsSource = dmDocument.AllFiles
+        TLV_Tree.ItemsSource = References
         'Dim Report As New ReportForm
 
         'For index = 1 To 10
@@ -42,26 +44,52 @@ Class MainWindow
     End Sub
     Public Property TopAssemblyPath As String
         Get
-            Return _FileName
+            Return _TopAssemblyPath
         End Get
         Set(value As String)
-            _FileName = value
+            _TopAssemblyPath = value
+
+            If IO.File.Exists(TopAssemblyPath) Then
+                FileExists = True
+            Else
+                FileExists = False
+                Exit Property
+            End If
+            AllConfigurations.Clear()
 
             Dim doc As SwDMDocument18 = dmDocument.OpenDocument(TopAssemblyPath)
-            AllConfigurations.Clear()
+
 
             If doc IsNot Nothing Then
                 For Each name As String In doc.ConfigurationManager.GetConfigurationNames()
                     AllConfigurations.Add(name)
                 Next
                 doc.CloseDoc()
-
                 SelectedConfiguration = AllConfigurations(0)
             End If
         End Set
     End Property
+    Public Property FileExists As Boolean
     Public Property AllConfigurations As New ObservableCollection(Of String)
     Public Property SelectedConfiguration As String
+        Get
+            Return _SelectedConfiguration
+        End Get
+        Set(value As String)
+            _SelectedConfiguration = value
+            If FileExists Then
+                References.Clear()
+                dmDocument.AllFiles.Clear()
+                Dim Doc As New dmDocument(value, SelectedConfiguration)
+                Doc.GetReferences()
+                References.Add(Doc)
+            End If
+        End Set
+    End Property
+
+    Public Property FindText As String
+    Public Property ReplaceText As String
+
 
     Private Sub Btn_Broswe_Click(sender As Object, e As RoutedEventArgs)
         Dim Dia As New OpenFileDialog
@@ -75,11 +103,11 @@ Class MainWindow
         End If
     End Sub
     Private Sub Btn_Ok_Click(sender As Object, e As RoutedEventArgs)
-        If IO.File.Exists(TopAssemblyPath) And Rules.Count > 0 Then
-            Dim UpdateFiles As New UpdateFiles(TopAssemblyPath)
-            UpdateFiles.Update(Rules)
-        End If
-        Dim Report As New ReportForm
+        'If IO.File.Exists(TopAssemblyPath) And Rules.Count > 0 Then
+        '    Dim UpdateFiles As New UpdateFiles(TopAssemblyPath)
+        '    UpdateFiles.Update(Rules)
+        'End If
+        'Dim Report As New ReportForm
         'Report.Results = UpdateFiles.Results
         'Dim Win As New Window
         'With Win
@@ -122,4 +150,11 @@ Class MainWindow
         End Get
     End Property
 
+    Private Sub FindButton_Click(sender As Object, e As RoutedEventArgs)
+
+    End Sub
+
+    Private Sub ReplaceButton_Click(sender As Object, e As RoutedEventArgs)
+
+    End Sub
 End Class

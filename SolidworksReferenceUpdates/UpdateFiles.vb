@@ -3,8 +3,7 @@ Imports System.Text.RegularExpressions
 Imports SwDocumentMgr
 
 Public Class UpdateFiles
-    Shared ClasFact As ISwDMClassFactory = CreateObject("SwDocumentMgr.SwDMClassFactory.1")
-    Shared dmDocMgr As SwDMApplication4 = ClasFact.GetApplication(SwDocumentMgr_Data.sLicenseKey)
+    Shared dmDocMgr As SwDMApplication4 = GetSwDocMgr()
 
     Public Property FileName As IO.FileInfo
 
